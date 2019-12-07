@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/progamandoconro/MyReactTODOApp/static/css/main.1fb44db4.chunk.css",
+    "main.js": "/progamandoconro/MyReactTODOApp/static/js/main.8e0222d8.chunk.js",
+    "main.js.map": "/progamandoconro/MyReactTODOApp/static/js/main.8e0222d8.chunk.js.map",
+    "runtime-main.js": "/progamandoconro/MyReactTODOApp/static/js/runtime-main.424df4c8.js",
+    "runtime-main.js.map": "/progamandoconro/MyReactTODOApp/static/js/runtime-main.424df4c8.js.map",
+    "static/js/2.3e7a88e2.chunk.js": "/progamandoconro/MyReactTODOApp/static/js/2.3e7a88e2.chunk.js",
+    "static/js/2.3e7a88e2.chunk.js.map": "/progamandoconro/MyReactTODOApp/static/js/2.3e7a88e2.chunk.js.map",
+    "index.html": "/progamandoconro/MyReactTODOApp/index.html",
+    "precache-manifest.dbf84efc9fe78718d17a1ba00484e0bc.js": "/progamandoconro/MyReactTODOApp/precache-manifest.dbf84efc9fe78718d17a1ba00484e0bc.js",
+    "service-worker.js": "/progamandoconro/MyReactTODOApp/service-worker.js",
+    "static/css/main.1fb44db4.chunk.css.map": "/progamandoconro/MyReactTODOApp/static/css/main.1fb44db4.chunk.css.map",
+    "static/js/2.3e7a88e2.chunk.js.LICENSE": "/progamandoconro/MyReactTODOApp/static/js/2.3e7a88e2.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.424df4c8.js",
+    "static/js/2.3e7a88e2.chunk.js",
+    "static/css/main.1fb44db4.chunk.css",
+    "static/js/main.8e0222d8.chunk.js"
+  ]
+}
