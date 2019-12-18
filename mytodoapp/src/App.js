@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import randomColor from 'randomcolor';
 
 function App() {
 	const [ data, handleData ] = useState(' ');
@@ -7,7 +8,6 @@ function App() {
 
 	const saveItem = () => {
 		setList((e) => [ ...e, data ]);
-		console.log(list);
 	};
 
 	const handleKeyDown = (e) => {
@@ -26,8 +26,8 @@ function App() {
 		return (
 			<div>
 				{list.map((e, k) => (
-					<li key={k}>
-						<p className="Input-box">
+					<li style={{ backgroundColor: randomColor() }} key={k}>
+						<p>
 							{e}
 							<br />
 							<button color={'red'} onClick={() => handleRemoveItem(k)}>
@@ -45,24 +45,37 @@ function App() {
 		console.log(list);
 	};
 	return (
-		<div className="App">
-			<div className="App-header">
-				<p className="Input-todo">{data}</p>
-				<div className="Input-Form">
-					<form>
-						<input onKeyDown={handleKeyDown} onChange={(e) => handleData(e.target.value)} value={data} />
+		<div>
+			<div className="App">
+				<h1>My TODO App</h1>
+				<div className="App-header">
+					<p className="Input-todo">{data}</p>
+					<div>
+						<form>
+							<input
+								onKeyDown={handleKeyDown}
+								onChange={(e) => handleData(e.target.value)}
+								value={data}
+							/>
+							<hr />
+						</form>
+					</div>
+					<div>
+						<button
+							className="Save-Button"
+							onClick={(e) => {
+								saveItem(e);
+							}}
+						>
+							Save
+						</button>
 						<hr />
-					</form>
+					</div>
+					<div>{showTable()}</div>
+					<hr style={{ width: '50%' }} />
+					<button onClick={(e) => deleteList(e)}> Delete List</button>
 				</div>
-				<div>
-					<button className="Save-Button" onClick={(e) => saveItem(e)}>
-						Save
-					</button>
-					<hr />
-				</div>
-				<div>{showTable()}</div>
-				<hr style={{ width: '50%' }} />
-				<button onClick={(e) => deleteList(e)}> Delete List</button>
+				<h1>programandoconro</h1>
 			</div>
 		</div>
 	);
