@@ -6,28 +6,28 @@
   height: 40vmin;
 }
 
-.App-header {
+.Todo {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  
   font-size: calc(10px + 2vmin);
-  color: white;
+  
   
 }
 
 .Input-todo{
   font-family: cursive;
-  font-size: calc(100px + 2vmin);
+  font-size: calc(10px + 2vmin);
 
 }
 
 .Input-box {
   color: #000;
   font-size: 250c;
-  background-color: aqua;
+  
   padding: 10mm;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -47,4 +47,5 @@
 
 .Item {
   padding: 10;
+   width: '200%' 
 }

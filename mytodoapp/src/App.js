@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import './App.css';
 import randomColor from 'randomcolor';
+import { Button, Paper, Card, Typography } from '@material-ui/core';
 
 function App() {
-	const [ data, handleData ] = useState(' ');
-	const [ list, setList ] = useState([]);
+	const [data, handleData] = useState(' ');
+	const [list, setList] = useState([]);
 
 	const saveItem = () => {
-		setList((e) => [ ...e, data ]);
+		setList((e) => [...e, data]);
 	};
 
 	const handleKeyDown = (e) => {
@@ -17,8 +18,12 @@ function App() {
 		}
 	};
 
+	const clearInput = () => {
+		handleData('');
+	};
+
 	const handleRemoveItem = (id) => {
-		const l = [ ...list ];
+		const l = [...list];
 		l.splice(id, 1);
 		setList(l);
 	};
@@ -26,15 +31,19 @@ function App() {
 		return (
 			<div>
 				{list.map((e, k) => (
-					<li style={{ backgroundColor: randomColor() }} key={k}>
-						<p>
-							{e}
-							<br />
-							<button color={'red'} onClick={() => handleRemoveItem(k)}>
+					<Paper>
+						<li key={k}>
+							<Card style={{ backgroundColor: randomColor() }} size="big">
+								<p>
+									{e}
+									<br></br>
+								</p>
+							</Card>
+							<Button color="secondary" onClick={() => handleRemoveItem(k)}>
 								Done
-							</button>
-						</p>
-					</li>
+							</Button>
+						</li>
+					</Paper>
 				))}
 			</div>
 		);
@@ -48,9 +57,10 @@ function App() {
 		<div>
 			<div className="App">
 				<h1>My TODO App</h1>
-				<div className="App-header">
-					<p className="Input-todo">{data}</p>
+				<div className="Todo">
 					<div>
+						<br></br>
+						<h1>Input todo</h1>
 						<form>
 							<input
 								onKeyDown={handleKeyDown}
@@ -60,20 +70,39 @@ function App() {
 							<hr />
 						</form>
 					</div>
+
 					<div>
-						<button
-							className="Save-Button"
+						<Button
+							size="small"
+							variant="contained"
+							color="primary"
 							onClick={(e) => {
 								saveItem(e);
 							}}
 						>
 							Save
-						</button>
+						</Button>
+						<br></br>
+						<br></br>
+						<Button
+							size="small"
+							variant="outlined"
+							color="secondary"
+							className="Delete-Button"
+							onClick={(e) => {
+								clearInput(e);
+							}}
+						>
+							Clear
+						</Button>
 						<hr />
+						<p className="Input-todo">{data}</p>
 					</div>
 					<div>{showTable()}</div>
 					<hr style={{ width: '50%' }} />
-					<button onClick={(e) => deleteList(e)}> Delete List</button>
+					<Button size="small" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
+						Clear <br></br> List
+					</Button>
 				</div>
 				<h1>programandoconro</h1>
 			</div>
