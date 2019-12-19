@@ -1,51 +1,28 @@
 .App {
   text-align: center;
+  vertical-align: baseline;
 }
 
-.App-logo {
-  height: 40vmin;
+.input{
+align-content: initial;
+  text-align: start;
 }
+
 
 .Todo {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   
+  text-align: center;
   font-size: calc(10px + 2vmin);
   
   
 }
 
-.Input-todo{
-  font-family: cursive;
-  font-size: calc(10px + 2vmin);
 
-}
 
-.Input-box {
-  color: #000;
-  font-size: 250c;
+
+
+
+.container{
+  background-image: url(./logo.png);
   
-  padding: 10mm;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.Send-Button {
-  color: black;
-  
-}
-.Delete-Button {
-  color:red;
-
-}
-.Save-Button {
-  color:blue;
-  
-}
-
-.Item {
-  padding: 10;
-   width: '200%' 
 }
