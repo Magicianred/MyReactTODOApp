@@ -71,70 +71,80 @@ function App() {
 		console.log(list);
 	};
 	return (
-		<Container style={{ backgroundColor: 'black', height: window.screen.height }}>
-			<h1 style={{ textAlign: 'center', color: 'white' }}>My TODO App </h1>
-			<div className="Todo">
-				<Card>
-					<TextField
-						style={{ width: '500px', backgroundColor: 'white' }}
-						placeholder="Subject:"
-						onKeyDown={handleKeyDown}
-						onChange={(e) => handleTitle(e.target.value)}
-						value={title}
-						multiple={true}
-					></TextField>
-					<br />
-					<TextField
-						placeholder="Description:"
-						multiline={true}
-						className="input"
-						style={{
-							alignItems: 'initial',
+		<div className="container" style={{ minHeight: window.screen.height }}>
+			<Container>
+				<h1
+					style={{
+						backgroundColor: 'black',
+						textAlign: 'center',
+						color: 'white'
+					}}
+				>
+					My TODO App{' '}
+				</h1>
+				<div className="Todo">
+					<Card>
+						<TextField
+							style={{ width: '500px', backgroundColor: 'white' }}
+							placeholder="Subject:"
+							onKeyDown={handleKeyDown}
+							onChange={(e) => handleTitle(e.target.value)}
+							value={title}
+							multiple={true}
+						></TextField>
+						<br />
+						<TextField
+							placeholder="Description:"
+							multiline={true}
+							className="input"
+							style={{
+								alignItems: 'initial',
 
-							width: '500px',
-							backgroundColor: 'white'
+								width: '500px',
+								backgroundColor: 'white'
+							}}
+							onKeyDown={handleKeyDown}
+							onChange={(e) => handleData(e.target.value)}
+							value={data}
+						></TextField>
+					</Card>
+
+					<Button
+						size="small"
+						variant="contained"
+						color="primary"
+						onClick={(e) => {
+							saveItem(e);
 						}}
-						onKeyDown={handleKeyDown}
-						onChange={(e) => handleData(e.target.value)}
-						value={data}
-					></TextField>
-				</Card>
+					>
+						Save
+					</Button>
+					<br></br>
 
-				<Button
-					size="small"
-					variant="contained"
-					color="primary"
-					onClick={(e) => {
-						saveItem(e);
-					}}
-				>
-					Save
-				</Button>
-				<br></br>
+					<Button
+						size="small"
+						variant="outlined"
+						color="secondary"
+						className="Delete-Button"
+						onClick={(e) => {
+							clearInput(e);
+						}}
+					>
+						Clear
+					</Button>
+					<hr />
 
-				<Button
-					size="small"
-					variant="outlined"
-					color="secondary"
-					className="Delete-Button"
-					onClick={(e) => {
-						clearInput(e);
-					}}
-				>
-					Clear
-				</Button>
-				<hr />
+					{showTable()}
+					<hr style={{ width: '50%' }} />
+					<Button size="small" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
+						Clear <br></br> List
+					</Button>
+					<br />
+				</div>
 
-				{showTable()}
-				<hr style={{ width: '50%' }} />
-				<Button size="small" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
-					Clear <br></br> List
-				</Button>
-				<br />
-			</div>
-
-			<h1 style={{ color: 'white', textAlign: 'center', alignContent: 'baseline' }}>programandoconro</h1>
-		</Container>
+				<h1 style={{ color: 'white', textAlign: 'center', alignContent: 'baseline' }}>programandoconro</h1>
+			</Container>
+		</div>
 	);
 }
 
