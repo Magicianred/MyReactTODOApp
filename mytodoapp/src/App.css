@@ -8,20 +8,11 @@ align-content: initial;
   text-align: start;
 }
 
-
 .Todo {
-  
   text-align: center;
   font-size: calc(10px + 2vmin);
   
-  
 }
-
-
-
-
-
-
 .container{
   background-image: url(./logo.png);
   
