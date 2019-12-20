@@ -1,76 +1,34 @@
 import React, { useState } from 'react';
 import './App.css';
-import randomColor from 'randomcolor';
 import { Button, Paper, Card, CardContent, TextField, Container, Typography } from '@material-ui/core';
+import MyColors from './colors';
 
 function App() {
-	const [title, handleTitle] = useState('');
-	const [data, handleData] = useState('');
-	const [list, setList] = useState([]);
+	const [subject, setSubject] = useState('');
+	const [description, setDescription] = useState('');
+	const [todoList, setTodoList] = useState([]);
 	const [color, setColor] = useState([]);
 
 	const saveItem = () => {
-		setList((e) => [...e, title + ': ' + data]);
-
-		function chooseColor(array = []) {
-			for (let i = 0; i < color.length + 1; i++) {
-				array.push(randomColor());
-			}
-		}
-
-		const myColors = [];
-		chooseColor(myColors);
-		console.log(myColors);
-		setColor(myColors);
-	};
-
-	const handleKeyDown = (e) => {
-		if (e.keyCode === 13) {
-			e.preventDefault();
-			e.stopPropagation();
-		}
+		setColor(MyColors);
+		setTodoList((e) => [...e, subject + ': ' + description]);
 	};
 
 	const clearInput = () => {
-		handleData('');
-		handleTitle('');
+		setDescription('');
+		setSubject('');
+	};
+
+	const deletetodoList = () => {
+		setTodoList([]);
 	};
 
 	const handleRemoveItem = (id) => {
-		const l = [...list];
+		const l = [...todoList];
 		l.splice(id, 1);
-		setList(l);
+		setTodoList(l);
 	};
-	const showTable = () => {
-		return (
-			<Container>
-				{list.map((e, k) => (
-					<Paper key={k} style={{ backgroundColor: 'black' }}>
-						<Card style={{ backgroundColor: color[k] }} raised={true} width="200px">
-							<CardContent
-								style={{
-									textAlign: 'left',
-									minHeight: '400px'
-								}}
-							>
-								<Typography style={{ fontSize: '40px' }}>{e}</Typography>
-							</CardContent>
-						</Card>
 
-						<Button onClick={() => handleRemoveItem(k)} variant="outlined" color="secondary">
-							Done
-						</Button>
-						<br />
-						<br />
-					</Paper>
-				))}
-			</Container>
-		);
-	};
-	const deleteList = () => {
-		setList([]);
-		console.log(list);
-	};
 	return (
 		<div className="App">
 			<Container className="container">
@@ -88,12 +46,10 @@ function App() {
 						<TextField
 							style={{ padding: '10%', backgroundColor: 'white', minWidth: '500px' }}
 							placeholder="Subject:"
-							onKeyDown={handleKeyDown}
-							onChange={(e) => handleTitle(e.target.value)}
-							value={title}
+							onChange={(e) => setSubject(e.target.value)}
+							value={subject}
 							multiple={true}
 						></TextField>
-
 						<TextField
 							placeholder="Description:"
 							multiline={true}
@@ -104,12 +60,10 @@ function App() {
 								minWidth: '500px',
 								backgroundColor: 'white'
 							}}
-							onKeyDown={handleKeyDown}
-							onChange={(e) => handleData(e.target.value)}
-							value={data}
+							onChange={(e) => setDescription(e.target.value)}
+							value={description}
 						></TextField>
 					</Card>
-
 					<Button
 						size="large"
 						variant="contained"
@@ -120,7 +74,6 @@ function App() {
 					>
 						Save
 					</Button>
-
 					<Button
 						size="large"
 						variant="outlined"
@@ -132,16 +85,34 @@ function App() {
 						Clear
 					</Button>
 					<hr />
-
-					{showTable()}
+					<Container>
+						{todoList.map((e, k) => (
+							<Paper key={k} style={{ backgroundColor: 'black' }}>
+								<Card style={{ backgroundColor: color[k] }} raised={true} width="200px">
+									<CardContent
+										style={{
+											textAlign: 'left',
+											minHeight: '400px'
+										}}
+									>
+										<Typography style={{ fontSize: 'calc(25px + 2vmin)' }}>{e}</Typography>
+									</CardContent>
+								</Card>
+								<Button onClick={() => handleRemoveItem(k)} variant="outlined" color="secondary">
+									Done
+								</Button>
+							</Paper>
+						))}
+					</Container>
 					<hr style={{ width: '50%' }} />
-					<Button size="large" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
-						Clear <br></br> List
+					<Button size="large" variant="outlined" color="secondary" onClick={(e) => deletetodoList(e)}>
+						Clear <br></br> todoList
 					</Button>
 					<br />
 				</Container>
-
-				<h1 style={{ color: 'white', textAlign: 'center', alignContent: 'baseline' }}>programandoconro</h1>
+				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
+					programandoconro
+				</Typography>
 			</Container>
 		</div>
 	);
