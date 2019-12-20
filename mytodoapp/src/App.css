@@ -1,19 +1,17 @@
-.App {
-  text-align: center;
-  vertical-align: baseline;
-}
-
-.input{
-align-content: initial;
-  text-align: start;
+.App{
+  background-color:black;
 }
 
 .Todo {
   text-align: center;
   font-size: calc(10px + 2vmin);
+  min-height: 505px;
+  padding: 10%;
   
 }
 .container{
   background-image: url(./logo.png);
+  padding: 10%;
   
 }
+

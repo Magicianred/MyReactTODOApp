@@ -49,10 +49,11 @@ function App() {
 						<Card style={{ backgroundColor: color[k] }} raised={true} width="200px">
 							<CardContent
 								style={{
-									textAlign: 'left'
+									textAlign: 'left',
+									minHeight: '400px'
 								}}
 							>
-								<Typography>{e}</Typography>
+								<Typography style={{ fontSize: '40px' }}>{e}</Typography>
 							</CardContent>
 						</Card>
 
@@ -71,36 +72,36 @@ function App() {
 		console.log(list);
 	};
 	return (
-		<div className="container" style={{ minHeight: window.screen.height }}>
-			<Container>
-				<h1
+		<div className="App">
+			<Container className="container">
+				<Typography
 					style={{
-						backgroundColor: 'black',
 						textAlign: 'center',
-						color: 'white'
+						color: 'white',
+						fontSize: 'calc(25px + 2vmin)'
 					}}
 				>
 					My TODO App{' '}
-				</h1>
-				<div className="Todo">
+				</Typography>
+				<Container className="Todo">
 					<Card>
 						<TextField
-							style={{ width: '500px', backgroundColor: 'white' }}
+							style={{ padding: '10%', backgroundColor: 'white', minWidth: '500px' }}
 							placeholder="Subject:"
 							onKeyDown={handleKeyDown}
 							onChange={(e) => handleTitle(e.target.value)}
 							value={title}
 							multiple={true}
 						></TextField>
-						<br />
+
 						<TextField
 							placeholder="Description:"
 							multiline={true}
 							className="input"
 							style={{
 								alignItems: 'initial',
-
-								width: '500px',
+								minHeight: '200px',
+								minWidth: '500px',
 								backgroundColor: 'white'
 							}}
 							onKeyDown={handleKeyDown}
@@ -110,7 +111,7 @@ function App() {
 					</Card>
 
 					<Button
-						size="small"
+						size="large"
 						variant="contained"
 						color="primary"
 						onClick={(e) => {
@@ -119,13 +120,11 @@ function App() {
 					>
 						Save
 					</Button>
-					<br></br>
 
 					<Button
-						size="small"
+						size="large"
 						variant="outlined"
 						color="secondary"
-						className="Delete-Button"
 						onClick={(e) => {
 							clearInput(e);
 						}}
@@ -136,11 +135,11 @@ function App() {
 
 					{showTable()}
 					<hr style={{ width: '50%' }} />
-					<Button size="small" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
+					<Button size="large" variant="outlined" color="secondary" onClick={(e) => deleteList(e)}>
 						Clear <br></br> List
 					</Button>
 					<br />
-				</div>
+				</Container>
 
 				<h1 style={{ color: 'white', textAlign: 'center', alignContent: 'baseline' }}>programandoconro</h1>
 			</Container>
