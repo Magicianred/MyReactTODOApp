@@ -11,7 +11,14 @@ function App() {
 
 	const saveItem = () => {
 		setColor(MyColors);
-		setTodoList((e) => [...e, subject + ': ' + description]);
+		setTodoList((e) => [
+			...e,
+			<Container>
+				<Card>{subject + ': '} </Card>
+				<hr />
+				<Card> {description}</Card>
+			</Container>
+		]);
 	};
 
 	const clearInput = () => {
@@ -106,7 +113,7 @@ function App() {
 					</Container>
 					<hr style={{ width: '50%' }} />
 					<Button size="large" variant="outlined" color="secondary" onClick={(e) => deletetodoList(e)}>
-						Clear <br></br> todoList
+						Clear <br></br>
 					</Button>
 					<br />
 				</Container>
