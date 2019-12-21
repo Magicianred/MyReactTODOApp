@@ -71,9 +71,10 @@ function App() {
 							value={description}
 						></TextField>
 					</Card>
+					<br />
 					<Button
 						size="large"
-						variant="contained"
+						variant="outlined"
 						color="primary"
 						onClick={(e) => {
 							saveItem(e);
@@ -81,6 +82,7 @@ function App() {
 					>
 						Save
 					</Button>
+
 					<Button
 						size="large"
 						variant="outlined"
@@ -94,21 +96,24 @@ function App() {
 					<hr />
 					<Container>
 						{todoList.map((e, k) => (
-							<Paper key={k} style={{ backgroundColor: 'black' }}>
-								<Card style={{ backgroundColor: color[k] }} raised={true} width="200px">
-									<CardContent
-										style={{
-											textAlign: 'left',
-											minHeight: '400px'
-										}}
-									>
-										<Typography style={{ fontSize: 'calc(25px + 2vmin)' }}>{e}</Typography>
-									</CardContent>
-								</Card>
-								<Button onClick={() => handleRemoveItem(k)} variant="outlined" color="secondary">
-									Done
-								</Button>
-							</Paper>
+							<Container>
+								<Paper key={k} style={{ backgroundColor: 'black' }}>
+									<Card style={{ backgroundColor: color[k] }} raised={true} width="200px">
+										<CardContent
+											style={{
+												textAlign: 'left',
+												minHeight: '400px'
+											}}
+										>
+											{e}
+										</CardContent>
+									</Card>
+									<Button onClick={() => handleRemoveItem(k)} variant="outlined" color="secondary">
+										Done
+									</Button>
+								</Paper>
+								<br />
+							</Container>
 						))}
 					</Container>
 					<hr style={{ width: '50%' }} />
