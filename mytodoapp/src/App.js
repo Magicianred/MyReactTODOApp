@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './App.css';
 import { Button, Paper, Card, CardContent, TextField, Container, Typography } from '@material-ui/core';
 import MyColors from './colors';
+import firebase from 'firebase';
+import './firebase';
+
+const db = firebase.database().ref('/todos/');
 
 function App() {
 	const [subject, setSubject] = useState('');
@@ -19,6 +23,7 @@ function App() {
 				<Card> {description}</Card>
 			</Container>
 		]);
+		db.push('Subject: ' + subject + '/ Description: ' + description);
 	};
 
 	const clearInput = () => {
