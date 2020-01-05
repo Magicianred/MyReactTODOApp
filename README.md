@@ -1,6 +1,8 @@
-# MyReactTODOApp: https://progamandoconro.github.io/MyReactTODOApp/
+# MyReactTODOApp: 
 
 Simple React Js TODO App using ```hooks```.
+
+https://progamandoconro.github.io/MyReactTODOApp/
 
 ```
    git clone https://github.com/progamandoconro/MyReactTODOApp
