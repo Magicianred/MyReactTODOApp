@@ -57,19 +57,27 @@ function App() {
 			
 		}
 		const tabla = JSON.stringify(thingsToDo);
+        const myTabla = tabla.split(',').map((item,k)=>(
+			<div key={k}>
+				<p>
+					{
+					item.slice(24)
+					.replace('Subject:', '')
+					.replace('Description:', '')
+					
+					}
+				</p>
+			</div>
 
+
+		))
 		return(
 <div>
 			<button onClick={e=>data(e)}> Show </button>
-	<p style={{color:'white'}}>{tabla}</p>
+	<p style={{color:'white'}}>{myTabla}</p>
 			</div>
 		)
 		
-		
-		
-
-
-
 	}
 
 	return (
