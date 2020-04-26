@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Button, Paper, Card, CardContent, TextField, Container, Typography } from '@material-ui/core';
 import MyColors from './colors';
@@ -12,6 +12,15 @@ function App() {
 	const [description, setDescription] = useState('');
 	const [todoList, setTodoList] = useState([]);
 	const [color, setColor] = useState([]);
+	const [thingsToDo, handleThingsTodo] = useState([])
+	
+	const dbb = () => firebase.database();
+	useEffect(() => {
+		dbb().ref('/todos/');
+		
+	  });
+
+	 
 
 	const saveItem = () => {
 		setColor(MyColors);
@@ -40,6 +49,28 @@ function App() {
 		l.splice(id, 1);
 		setTodoList(l);
 	};
+
+	const showThingsToDo = () =>{
+		const data =() => {
+			dbb().ref('/todos/').on('value',handleThingsTodo)
+
+			
+		}
+		const tabla = JSON.stringify(thingsToDo);
+
+		return(
+<div>
+			<button onClick={e=>data(e)}> Show </button>
+	<p style={{color:'white'}}>{tabla}</p>
+			</div>
+		)
+		
+		
+		
+
+
+
+	}
 
 	return (
 		<div className="App">
@@ -126,6 +157,15 @@ function App() {
 						Clear <br></br>
 					</Button>
 					<br />
+				</Container>
+
+				<Container>
+
+					<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
+				<div>
+				{showThingsToDo()}
+				</div>
+
 				</Container>
 				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
 					programandoconro
