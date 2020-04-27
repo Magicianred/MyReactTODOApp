@@ -83,10 +83,20 @@ function App() {
 					</Container>
 		))
 		return(
-<div>
-			<button onClick={e=>data(e)}> Show </button>
-	<p style={{color:'white'}}>{myTabla}</p>
-			</div>
+<Container>
+			<Button
+			size="large"
+			variant="outlined"
+			color="primary"
+			onClick={(e) => {
+				data(e);
+			}}
+		>
+             Show
+			</Button>
+
+{myTabla}
+</Container>
 		)	
 	}
 
@@ -177,14 +187,24 @@ function App() {
 					<br />
 				</Container>
 
-				<Container>
+				<Container className="Todo">
 
 					<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
 				
 				
 				{showThingsToDo()}
-				<button onClick={e=>deleteAll(e)}> Delete all </button>
-				
+				a
+				<Button
+						size="large"
+						variant="outlined"
+						color="secondary"
+						onClick={(e) => {
+							deleteAll(e);
+						}}
+						
+					>
+						Delete all
+					</Button>
 				</Container>
 				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
 					programandoconro
