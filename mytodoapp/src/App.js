@@ -44,17 +44,13 @@ function App() {
 	};
 
 	const deleteAll = () => {
-		
 		if (window.confirm('Delete all?')) {
-
-			db.set('')
-		}
+			db.set('')}
 		else{
 			console.log('Database did no change')
 		}
 
 	}
-
 	const handleRemoveItem = (id) => {
 		const l = [...todoList];
 		l.splice(id, 1);
@@ -76,17 +72,11 @@ function App() {
 									raised={true} 
 									width="200px"
 									multiple={true}
-
 									>
-		
-						{	
-							item.slice(24)
-							
-						}
+						{item.slice(24)}
 					</Card>
 					</Paper>
 					<br />
-
 					</Container>
 		))
 		return(
@@ -98,10 +88,7 @@ function App() {
 			onClick={(e) => {
 				data(e);
 			}}
-		>
-             Show
-			</Button>
-
+		> Show </Button>
 {myTabla}
 </Container>
 		)	
@@ -196,19 +183,15 @@ function App() {
 
 				<Container className="Todo">
 
-					<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
-				
-				
+				<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
 				{showThingsToDo()}
-				
 				<Button
 						size="large"
 						variant="outlined"
 						color="secondary"
 						onClick={(e) => {
 							deleteAll(e);
-						}}
-						
+						}}						
 					>
 						Delete all
 					</Button>
