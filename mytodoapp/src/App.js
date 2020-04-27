@@ -20,8 +20,6 @@ function App() {
 		
 	  });
 
-	 
-
 	const saveItem = () => {
 		setColor(MyColors);
 		setTodoList((e) => [
@@ -44,6 +42,18 @@ function App() {
 		setTodoList([]);
 	};
 
+	const deleteAll = () => {
+		
+		if (window.confirm('Delete all?')) {
+
+			db.set('')
+		}
+		else{
+			console.log('Database did no change')
+		}
+
+	}
+
 	const handleRemoveItem = (id) => {
 		const l = [...todoList];
 		l.splice(id, 1);
@@ -57,27 +67,27 @@ function App() {
 			
 		}
 		const tabla = JSON.stringify(thingsToDo);
-        const myTabla = tabla.split(',').map((item,k)=>(
-			<div key={k}>
-				<p>
-					{
-					item.slice(24)
-					.replace('Subject:', '')
-					.replace('Description:', '')
-					
-					}
-				</p>
-			</div>
+        const myTabla = tabla.split(',').map((item,key)=>(
+		<Container>
+			<Paper key={key} style={{ backgroundColor: 'black' }}>
+									<Card style={{ backgroundColor: color[key] }} raised={true} width="200px">
+		
+						{	
+							item.slice(24)
+							
+						}
+					</Card>
+					</Paper>
+					<br />
 
-
+					</Container>
 		))
 		return(
 <div>
 			<button onClick={e=>data(e)}> Show </button>
 	<p style={{color:'white'}}>{myTabla}</p>
 			</div>
-		)
-		
+		)	
 	}
 
 	return (
@@ -170,10 +180,11 @@ function App() {
 				<Container>
 
 					<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
-				<div>
+				
+				
 				{showThingsToDo()}
-				</div>
-
+				<button onClick={e=>deleteAll(e)}> Delete all </button>
+				
 				</Container>
 				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
 					programandoconro
