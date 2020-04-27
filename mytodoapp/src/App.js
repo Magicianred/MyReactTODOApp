@@ -20,6 +20,7 @@ function App() {
 		
 	  });
 
+
 	const saveItem = () => {
 		setColor(MyColors);
 		setTodoList((e) => [
@@ -62,15 +63,21 @@ function App() {
 
 	const showThingsToDo = () =>{
 		const data =() => {
-			dbb().ref('/todos/').on('value',handleThingsTodo)
-
+			dbb().ref('/todos/').on('value', handleThingsTodo)
+			console.log(JSON.stringify(thingsToDo))
 			
 		}
 		const tabla = JSON.stringify(thingsToDo);
         const myTabla = tabla.split(',').map((item,key)=>(
-		<Container>
+		<Container key={key}>
 			<Paper key={key} style={{ backgroundColor: 'black' }}>
-									<Card style={{ backgroundColor: color[key] }} raised={true} width="200px">
+									<Card 
+									style={{ backgroundColor: color[key] }} 
+									raised={true} 
+									width="200px"
+									multiple={true}
+
+									>
 		
 						{	
 							item.slice(24)
@@ -101,7 +108,7 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+	
 			<Container className="container">
 				<Typography
 					style={{
@@ -193,7 +200,7 @@ function App() {
 				
 				
 				{showThingsToDo()}
-				a
+				
 				<Button
 						size="large"
 						variant="outlined"
@@ -210,7 +217,7 @@ function App() {
 					programandoconro
 				</Typography>
 			</Container>
-		</div>
+		
 	);
 }
 
