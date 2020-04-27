@@ -5,22 +5,14 @@ import MyColors from './colors';
 import firebase from 'firebase';
 import './firebase';
 
-const db = firebase.database().ref('/todos/');
-
 function App() {
+	const dbb = () => firebase.database();
 	const [subject, setSubject] = useState('');
 	const [description, setDescription] = useState('');
 	const [todoList, setTodoList] = useState([]);
 	const [color, setColor] = useState([]);
 	const [thingsToDo, handleThingsTodo] = useState([])
 	
-	const dbb = () => firebase.database();
-	useEffect(() => {
-		dbb().ref('/todos/');
-		
-	  });
-
-
 	const saveItem = () => {
 		setColor(MyColors);
 		setTodoList((e) => [
@@ -31,7 +23,7 @@ function App() {
 				<Card> {description}</Card>
 			</Container>
 		]);
-		db.push('Subject: ' + subject + '/ Description: ' + description);
+		dbb().ref('/todos/').push('Subject: ' + subject + '/ Description: ' + description);
 	};
 
 	const clearInput = () => {
@@ -45,7 +37,7 @@ function App() {
 
 	const deleteAll = () => {
 		if (window.confirm('Delete all?')) {
-			db.set('')}
+			dbb().ref('/todos/').set('')}
 		else{
 			console.log('Database did no change')
 		}
@@ -59,10 +51,11 @@ function App() {
 
 	const showThingsToDo = () =>{
 		const data =() => {
-			dbb().ref('/todos/').on('value', handleThingsTodo)
-			console.log(JSON.stringify(thingsToDo))
+			dbb().ref('/todos/').on('value', handleThingsTodo);
+			console.log(JSON.stringify(thingsToDo));
 			
 		}
+		
 		const tabla = JSON.stringify(thingsToDo);
         const myTabla = tabla.split(',').map((item,key)=>(
 		<Container key={key}>
@@ -94,8 +87,11 @@ function App() {
 		)	
 	}
 
+
+
+
+
 	return (
-	
 			<Container className="container">
 				<Typography
 					style={{
@@ -104,7 +100,7 @@ function App() {
 						fontSize: 'calc(25px + 2vmin)'
 					}}
 				>
-					My TODO App{' '}
+					My TODO App
 				</Typography>
 				<Container className="Todo">
 					<Card>
@@ -137,9 +133,7 @@ function App() {
 						onClick={(e) => {
 							saveItem(e);
 						}}
-					>
-						Save
-					</Button>
+					> Save 	</Button>
 
 					<Button
 						size="large"
@@ -148,9 +142,7 @@ function App() {
 						onClick={(e) => {
 							clearInput(e);
 						}}
-					>
-						Clear
-					</Button>
+					> Clear </Button>
 					<hr />
 					<Container>
 						{todoList.map((e, k) => (
@@ -162,9 +154,7 @@ function App() {
 												textAlign: 'left',
 												minHeight: '400px'
 											}}
-										>
-											{e}
-										</CardContent>
+										> {e} </CardContent>
 									</Card>
 									<Button onClick={() => handleRemoveItem(k)} variant="outlined" color="secondary">
 										Done
@@ -182,8 +172,7 @@ function App() {
 				</Container>
 
 				<Container className="Todo">
-
-				<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
+				<Typography style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </Typography>
 				{showThingsToDo()}
 				<Button
 						size="large"
@@ -192,9 +181,9 @@ function App() {
 						onClick={(e) => {
 							deleteAll(e);
 						}}						
-					>
-						Delete all
-					</Button>
+					> Delete all
+				</Button>
+				
 				</Container>
 				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
 					programandoconro
