@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Button, Paper, Card, CardContent, TextField, Container, Typography } from '@material-ui/core';
 import MyColors from './colors';
@@ -12,6 +12,13 @@ function App() {
 	const [description, setDescription] = useState('');
 	const [todoList, setTodoList] = useState([]);
 	const [color, setColor] = useState([]);
+	const [thingsToDo, handleThingsTodo] = useState([])
+	
+	const dbb = () => firebase.database();
+	useEffect(() => {
+		dbb().ref('/todos/');
+		
+	  });
 
 	const saveItem = () => {
 		setColor(MyColors);
@@ -35,11 +42,53 @@ function App() {
 		setTodoList([]);
 	};
 
+	const deleteAll = () => {
+		
+		if (window.confirm('Delete all?')) {
+
+			db.set('')
+		}
+		else{
+			console.log('Database did no change')
+		}
+
+	}
+
 	const handleRemoveItem = (id) => {
 		const l = [...todoList];
 		l.splice(id, 1);
 		setTodoList(l);
 	};
+
+	const showThingsToDo = () =>{
+		const data =() => {
+			dbb().ref('/todos/').on('value',handleThingsTodo)
+
+			
+		}
+		const tabla = JSON.stringify(thingsToDo);
+        const myTabla = tabla.split(',').map((item,key)=>(
+		<Container>
+			<Paper key={key} style={{ backgroundColor: 'black' }}>
+									<Card style={{ backgroundColor: color[key] }} raised={true} width="200px">
+		
+						{	
+							item.slice(24)
+							
+						}
+					</Card>
+					</Paper>
+					<br />
+
+					</Container>
+		))
+		return(
+<div>
+			<button onClick={e=>data(e)}> Show </button>
+	<p style={{color:'white'}}>{myTabla}</p>
+			</div>
+		)	
+	}
 
 	return (
 		<div className="App">
@@ -126,6 +175,16 @@ function App() {
 						Clear <br></br>
 					</Button>
 					<br />
+				</Container>
+
+				<Container>
+
+					<h5 style={{color:'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}> Things to do: </h5>
+				
+				
+				{showThingsToDo()}
+				<button onClick={e=>deleteAll(e)}> Delete all </button>
+				
 				</Container>
 				<Typography style={{ color: 'white', textAlign: 'center', fontSize: 'calc(25px + 2vmin)' }}>
 					programandoconro
