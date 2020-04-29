@@ -12,7 +12,7 @@ https://programandoconro.github.io/MyReactTODOApp/
 ``` 
 Features: Write and delete todos from Firebase Real Time database. 
 
-<div style="text-align:center"><img src="https://raw.githubusercontent.com/programandoconro/MyReactTODOApp/master/todo.png" /></div>
+Add your Firebase credentials to ``src/firebase.js``.
 
 You can easily build and serve this app with Docker, just create a Dockerfile like this:
 
@@ -34,3 +34,5 @@ docker build . -t todoapp
 docker run -d -p 3011:5000 --restart always todoapp
 ```
 The app will be at [localhost:3011](localhost:3011)
+
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/programandoconro/MyReactTODOApp/master/todo.png" /></div>
