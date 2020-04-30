@@ -20,6 +20,7 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [color, setColor] = useState([]);
   const [thingsToDo, handleThingsTodo] = useState([]);
+  const [listStatus, setListStatus] = useState(0);
 
   const saveItem = () => {
     setColor(MyColors);
@@ -60,8 +61,14 @@ function App() {
 
   const showThingsToDo = () => {
     const data = () => {
-      dbb().ref("/todos/").on("value", handleThingsTodo);
-      console.log(JSON.stringify(thingsToDo));
+      if (listStatus === 0) {
+        dbb().ref("/todos/").on("value", handleThingsTodo);
+        setListStatus(1);
+      } else {
+        handleThingsTodo([]);
+        setListStatus(0);
+      }
+      console.log(listStatus);
     };
 
     const tabla = JSON.stringify(thingsToDo);
@@ -80,6 +87,7 @@ function App() {
         <br />
       </Container>
     ));
+
     return (
       <Container>
         <Button
@@ -91,7 +99,7 @@ function App() {
           }}
         >
           {" "}
-          Show{" "}
+          Show / Hide{" "}
         </Button>
         {myTabla}
       </Container>
@@ -163,7 +171,7 @@ function App() {
         <hr />
         <Container>
           {todoList.map((e, k) => (
-            <Container>
+            <Container key={k}>
               <Paper key={k} style={{ backgroundColor: "black" }}>
                 <Card
                   style={{ backgroundColor: color[k] }}
